@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__.'/data/loadClass.php';
+require_once __DIR__.'/Pairings.php';
+require_once __DIR__.'/MaxWeightMatching.php';
 $no_of_players = (isset($_GET['players'])?$_GET['players']:15);
 $no_of_rounds = (isset($_GET['rounds'])?$_GET['rounds']:6);
 $players = [];
