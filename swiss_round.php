@@ -10,7 +10,7 @@ for ($i = 0; $i < $no_of_players; $i++) {
 
 $bye_data = ['id'=> 'BYE', 'points'=>  0, 'opponents'=> []];
 
-echo "$no_of_rounds rounds of swiss. The left players always won<br />";
+echo "$no_of_rounds rounds of swiss. The left players always won. Draws are given on specific index<br />";
 
 For ($round_number = 1; $round_number <= $no_of_rounds ;$round_number++) {
 	echo "There is ".count($players)." players <br/>";
@@ -32,7 +32,13 @@ For ($round_number = 1; $round_number <= $no_of_rounds ;$round_number++) {
 			} else {
 		        echo($p1['id']." (".$p1['points'].") v ".$p2['id']." (".$p2['points'].") <br />");
 			}
-			$players[$i]['points']+=3;
+			if ($i % 5 == 0) {
+				$players[$i]['points']+=1;
+				$players[$pairing[$i]]['points']+=1;
+			} else {
+				$players[$i]['points']+=3;
+			}
+			
 			array_push($players[$i]['opponents'], $p2['id']);
 			array_push($players[$pairing[$i]]['opponents'], $p1['id']);
 			$players[$i]['paired'] = true;
@@ -58,5 +64,4 @@ For ($round_number = 1; $round_number <= $no_of_rounds ;$round_number++) {
 		echo "<br />";
 	}
 	echo "<br />";
-}    
-?>
+}
